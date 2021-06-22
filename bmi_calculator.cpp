@@ -7,6 +7,7 @@
 #include <cstring>
 using namespace std;
 
+//Struct to define info datatype
 struct info
 {
   string name;
@@ -15,6 +16,7 @@ struct info
   string bmi_data;
 }data[100000];
 
+//Functions to calculate BMI
 float bmi(int weight, float height)
 {
     float bmi_result= weight/(pow((height),2));
@@ -23,7 +25,9 @@ float bmi(int weight, float height)
 
 int main()
 {
-    int j=0;
+    
+    int j=0; //int j=0 used at while loop function
+    //mainmenu
     mainmenu:
         cout<<"\nWelcome to BMI Calculator, what would you want to do?\n";
         cout<<"\n";
@@ -31,12 +35,16 @@ int main()
         cout<<"1. New BMI Data\n";
         cout<<"2. Load BMI Data\n";
         cout<<"3. BMI Info\n";
+
+        //Menu interface
         int option;
         do
         {
             cout<<"Option: ";
             cin>>option;
         }while(option>3 && option<1);
+
+        //Option 1: Creating & Storing BMI DATA
         if(option==1)
         {
             cout<<"\n";
@@ -58,6 +66,7 @@ int main()
                     fflush(stdin);
                 }while(data[i].height>3);
             }
+            //Processing BMI Data + storing them as strings
             while(j<people)
             {
                 if (bmi(data[j].weight,data[j].height)<18.5)
@@ -92,6 +101,8 @@ int main()
                 j++;
             }
             outfile.close();
+
+            //Options to quit or return to the main menu
             cout<<"Your data has been saved!, would you want to return to main menu?\n";
             cout<<"1. yes\n";
             cout<<"2. no\n";
@@ -109,6 +120,7 @@ int main()
                 printf("Thank you for using this application\n");
             } 
         }
+        //Showing BMI DATA
         else if(option==3)
         {
             printf("BMI Indicator\n");
@@ -118,6 +130,7 @@ int main()
             printf("BMI >30= Obese\n");
             goto mainmenu;
         }
+        //Load BMI DATA
         else
         {
             cout<<"\n";
@@ -132,6 +145,8 @@ int main()
                 infile.clear();
             }while(!infile.eof()&& !data[j].bmi_data.empty());
             infile.close();
+
+            //Options to quit or return to the main menu
             cout<<"That's all, would you want to return to main menu?\n";
             cout<<"1. yes\n";
             cout<<"2. no\n";
